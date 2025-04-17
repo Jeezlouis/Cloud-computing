@@ -246,7 +246,7 @@ with tab1:
             st.markdown("<h3 style='color: #6C63FF;'>📚 Academic Factors</h3>", unsafe_allow_html=True)
             hours = st.slider("Hours Studied Weekly", 0, 40, 20, help="Average number of hours spent studying per week")
             attendance = st.slider("Attendance Rate", 0.0, 1.0, 0.9, format="%.2f", help="Percentage of classes attended (0.9 = 90%)")
-            previous = st.slider("Previous Exam Scores", 0, 100, 75, help="Average score from previous exams")
+            previous = st.slider("CA Scores", 0, 100, 75, help="Average score from CA")
 
         with col2:
             st.markdown("<h3 style='color: #6C63FF;'>💡 Motivation & Support</h3>", unsafe_allow_html=True)
