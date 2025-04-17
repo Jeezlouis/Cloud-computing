@@ -411,19 +411,20 @@ with tab2:
     if uploaded_file:
         try:
             df = pd.read_csv(uploaded_file)
-            
-            # Success message with animation
+            record_count = len(df)
+
             st.markdown("""
-            <div style="background-color: #d9ead3; border-radius: 5px; padding: 10px; display: flex; align-items: center; margin-bottom: 20px;">
-                <div style="background-color: #4CAF50; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
-                    <span style="color: white; font-weight: bold;">✓</span>
+                <div style="background-color: #d9ead3; border-radius: 5px; padding: 10px; display: flex; align-items: center; margin-bottom: 20px;">
+                    <div style="background-color: #4CAF50; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <span style="color: white; font-weight: bold;">✓</span>
+                    </div>
+                    <div>
+                        <h4 style="margin: 0; color: #388e3c;">File uploaded successfully!</h4>
+                        <p style="margin: 0; font-size: 14px;">Processing {record_count} student records...</p>
+                    </div>
                 </div>
-                <div>
-                    <h4 style="margin: 0; color: #388e3c;">File uploaded successfully!</h4>
-                    <p style="margin: 0; font-size: 14px;">Processing {len(df)} student records...</p>
-                </div>
-            </div>
-            """.format(len=len(df)), unsafe_allow_html=True)
+            """.format(record_count=record_count), unsafe_allow_html=True)
+
 
             with st.spinner("⏳ Running batch prediction..."):
                 results = predictor.predict(df.to_dict(orient="records"))
@@ -671,7 +672,7 @@ with tab2:
                 st.markdown("</div>", unsafe_allow_html=True)
 
         except Exception as e:
-            st.error(f"""
+            st.markdown(f"""
             <div style="display: flex; align-items: center;">
                 <div style="background-color: #d32f2f; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
                     <span style="color: white; font-weight: bold;">!</span>
