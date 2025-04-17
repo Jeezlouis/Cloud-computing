@@ -169,7 +169,7 @@ st.markdown("""
     
     /* Ensure all form labels are black */
     label, .stSlider > div, .stSelectbox > div {
-        color: white !important;
+        color: grey !important;
     }
 </style>
 """, unsafe_allow_html=True)
